@@ -1,0 +1,18 @@
+.drumkit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  background: lightsteelblue;
+}
+
+.drumkit__header {
+  text-align: center;
+  background: lightblue;
+  padding: 10px;
+}
+
+.drumkit__header h1 {
+  margin: 0;
+}

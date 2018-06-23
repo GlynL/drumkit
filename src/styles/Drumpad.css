@@ -1,0 +1,9 @@
+.drumpad {
+  height: 120px;
+  background: lavender;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  width: calc(100% / 3 - 20px);
+}
