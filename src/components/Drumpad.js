@@ -1,15 +1,21 @@
 import React from "react";
 import "../styles/Drumpad.css";
 
-const Drumpad = ({ power, press, sound }) => {
+const Drumpad = ({ power, setDisplay, press, sound }) => {
   const handleClick = e => {
     const audio = e.target.querySelector("audio");
+    setDisplay(e);
     if (power) audio.play();
   };
+  press = press.toUpperCase();
 
   return (
-    <div className="drumpad" onClick={handleClick}>
-      <audio src={sound} type="audio/wav" id={`drumpad-${press}`} />
+    <div
+      className="drumpad drum-pad"
+      id={`drum-pad${press}`}
+      onClick={handleClick}
+    >
+      <audio src={sound} type="audio/wav" id={`${press}`} className="clip   " />
       {press}
     </div>
   );

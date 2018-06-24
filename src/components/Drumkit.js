@@ -53,6 +53,7 @@ class Drumkit extends Component {
     };
     this.handleKeydown = this.handleKeydown.bind(this);
     this.handlePowerChecked = this.handlePowerChecked.bind(this);
+    this.setDisplay = this.setDisplay.bind(this);
   }
 
   handlePowerChecked(e) {
@@ -60,7 +61,7 @@ class Drumkit extends Component {
   }
 
   handleKeydown(e) {
-    const audio = document.querySelector(`#drumpad-${e.key}`);
+    const audio = document.querySelector(`#${e.key}`);
     if (audio && this.state.isPowerChecked) {
       const drum = {
         ...this.state.drumpads.filter(drum => drum.press === e.key)[0]
@@ -71,19 +72,39 @@ class Drumkit extends Component {
     }
   }
 
+  setDisplay(e) {
+    const audio = e.target.querySelector("audio");
+    console.log(audio.id);
+    const drum = {
+      ...this.state.drumpads.filter(
+        drum => drum.press === audio.id.toLowerCase()
+      )[0]
+    };
+    let sound = drum.sound.replace("sounds/", "").replace(".wav", "");
+    this.setState({ noise: sound });
+    // }
+  }
+
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeydown);
   }
 
   render() {
     const drums = drumpads.map((drum, idx) => (
-      <Drumpad key={idx} power={this.state.isPowerChecked} {...drum} />
+      <Drumpad
+        key={idx}
+        power={this.state.isPowerChecked}
+        setDisplay={this.setDisplay}
+        {...drum}
+      />
     ));
 
     return (
       <div>
         <DrumHeader />
-        <div className="drumkit">{drums}</div>
+        <div className="drumkit" id="drum-machine">
+          {drums}
+        </div>
         <Sidebar
           checked={this.state.isPowerChecked}
           handlePowerToggle={this.handlePowerChecked}

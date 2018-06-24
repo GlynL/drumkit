@@ -10,7 +10,7 @@ const Sidebar = props => (
       id="power"
       name="power"
     />
-    <p>{props.noise}</p>
+    <p id="display">{props.noise}</p>
   </div>
 );
 
