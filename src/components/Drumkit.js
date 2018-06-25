@@ -3,6 +3,7 @@ import Drumpad from "./Drumpad";
 import "../styles/Drumkit.css";
 import DrumHeader from "./DrumHeader";
 import Sidebar from "./Sidebar";
+import { connect } from "react-redux";
 
 const drumpads = [
   {
@@ -74,7 +75,6 @@ class Drumkit extends Component {
 
   setDisplay(e) {
     const audio = e.target.querySelector("audio");
-    console.log(audio.id);
     const drum = {
       ...this.state.drumpads.filter(
         drum => drum.press === audio.id.toLowerCase()
@@ -82,7 +82,6 @@ class Drumkit extends Component {
     };
     let sound = drum.sound.replace("sounds/", "").replace(".wav", "");
     this.setState({ noise: sound });
-    // }
   }
 
   componentDidMount() {
@@ -115,4 +114,8 @@ class Drumkit extends Component {
   }
 }
 
-export default Drumkit;
+function mapStateToProps(reduxState) {
+  return reduxState;
+}
+
+export default connect(mapStateToProps)(Drumkit);
