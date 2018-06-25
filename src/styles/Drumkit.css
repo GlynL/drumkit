@@ -4,13 +4,15 @@
   justify-content: center;
   align-items: center;
   width: 600px;
-  background: lightsteelblue;
+  background: #dbc7a8;
 }
 
 .drumkit__header {
   text-align: center;
-  background: lightblue;
+  background: #dbc7a8;
+  border-radius: 5px 5px 0 0;
   padding: 10px;
+  color: #333;
 }
 
 .drumkit__header h1 {

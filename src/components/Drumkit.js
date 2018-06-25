@@ -6,39 +6,39 @@ import Sidebar from "./Sidebar";
 
 const drumpads = [
   {
-    press: "q",
+    press: "Q",
     sound: "sounds/boom.wav"
   },
   {
-    press: "w",
+    press: "W",
     sound: "sounds/clap.wav"
   },
   {
-    press: "e",
+    press: "E",
     sound: "sounds/hihat.wav"
   },
   {
-    press: "a",
+    press: "A",
     sound: "sounds/kick.wav"
   },
   {
-    press: "s",
+    press: "S",
     sound: "sounds/openhat.wav"
   },
   {
-    press: "d",
+    press: "D",
     sound: "sounds/ride.wav"
   },
   {
-    press: "z",
+    press: "Z",
     sound: "sounds/snare.wav"
   },
   {
-    press: "x",
+    press: "X",
     sound: "sounds/tink.wav"
   },
   {
-    press: "c",
+    press: "C",
     sound: "sounds/tom.wav"
   }
 ];
@@ -49,7 +49,7 @@ class Drumkit extends Component {
     this.state = {
       drumpads,
       isPowerChecked: true,
-      noise: "welcome"
+      noise: "Let's start drumming!"
     };
     this.handleKeydown = this.handleKeydown.bind(this);
     this.handlePowerChecked = this.handlePowerChecked.bind(this);
@@ -61,10 +61,11 @@ class Drumkit extends Component {
   }
 
   handleKeydown(e) {
-    const audio = document.querySelector(`#${e.key}`);
+    const key = e.key ? e.key.toUpperCase() : null;
+    const audio = document.querySelector(`#${key}`);
     if (audio && this.state.isPowerChecked) {
       const drum = {
-        ...this.state.drumpads.filter(drum => drum.press === e.key)[0]
+        ...this.state.drumpads.filter(drum => drum.press === key)[0]
       };
       let sound = drum.sound.replace("sounds/", "").replace(".wav", "");
       audio.play();
@@ -74,15 +75,11 @@ class Drumkit extends Component {
 
   setDisplay(e) {
     const audio = e.target.querySelector("audio");
-    console.log(audio.id);
     const drum = {
-      ...this.state.drumpads.filter(
-        drum => drum.press === audio.id.toLowerCase()
-      )[0]
+      ...this.state.drumpads.filter(drum => drum.press === audio.id)[0]
     };
     let sound = drum.sound.replace("sounds/", "").replace(".wav", "");
     this.setState({ noise: sound });
-    // }
   }
 
   componentDidMount() {

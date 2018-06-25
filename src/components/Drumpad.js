@@ -7,7 +7,6 @@ const Drumpad = ({ power, setDisplay, press, sound }) => {
     setDisplay(e);
     if (power) audio.play();
   };
-  press = press.toUpperCase();
 
   return (
     <div
@@ -15,7 +14,7 @@ const Drumpad = ({ power, setDisplay, press, sound }) => {
       id={`drum-pad${press}`}
       onClick={handleClick}
     >
-      <audio src={sound} type="audio/wav" id={`${press}`} className="clip   " />
+      <audio src={sound} type="audio/wav" id={`${press}`} className="clip" />
       {press}
     </div>
   );
